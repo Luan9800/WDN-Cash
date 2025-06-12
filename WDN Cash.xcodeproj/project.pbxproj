@@ -6,53 +6,8 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		7F6053EA2DD2BE70007E8217 /* WDN Cash Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 7F6053E92DD2BE70007E8217 /* WDN Cash Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		7F6053EB2DD2BE70007E8217 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7F6053DD2DD2BE70007E8217 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7F6053E82DD2BE70007E8217;
-			remoteInfo = "WDN Cash Watch App";
-		};
-		7F6053F92DD2BE72007E8217 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7F6053DD2DD2BE70007E8217 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7F6053E82DD2BE70007E8217;
-			remoteInfo = "WDN Cash Watch App";
-		};
-		7F6054032DD2BE72007E8217 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7F6053DD2DD2BE70007E8217 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7F6053E82DD2BE70007E8217;
-			remoteInfo = "WDN Cash Watch App";
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		7F60540F2DD2BE72007E8217 /* Embed Watch Content */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
-			files = (
-				7F6053EA2DD2BE70007E8217 /* WDN Cash Watch App.app in Embed Watch Content */,
-			);
-			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		7F6053E32DD2BE70007E8217 /* WDN Cash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WDN Cash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6053E92DD2BE70007E8217 /* WDN Cash Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WDN Cash Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7F6053F82DD2BE72007E8217 /* WDN Cash Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WDN Cash Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7F6054022DD2BE72007E8217 /* WDN Cash Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WDN Cash Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -61,34 +16,10 @@
 			path = "WDN Cash Watch App";
 			sourceTree = "<group>";
 		};
-		7F6053FB2DD2BE72007E8217 /* WDN Cash Watch AppTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "WDN Cash Watch AppTests";
-			sourceTree = "<group>";
-		};
-		7F6054052DD2BE72007E8217 /* WDN Cash Watch AppUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "WDN Cash Watch AppUITests";
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		7F6053E62DD2BE70007E8217 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7F6053F52DD2BE72007E8217 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7F6053FF2DD2BE72007E8217 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -102,8 +33,6 @@
 			isa = PBXGroup;
 			children = (
 				7F6053ED2DD2BE70007E8217 /* WDN Cash Watch App */,
-				7F6053FB2DD2BE72007E8217 /* WDN Cash Watch AppTests */,
-				7F6054052DD2BE72007E8217 /* WDN Cash Watch AppUITests */,
 				7F6053E42DD2BE70007E8217 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -111,10 +40,7 @@
 		7F6053E42DD2BE70007E8217 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7F6053E32DD2BE70007E8217 /* WDN Cash.app */,
 				7F6053E92DD2BE70007E8217 /* WDN Cash Watch App.app */,
-				7F6053F82DD2BE72007E8217 /* WDN Cash Watch AppTests.xctest */,
-				7F6054022DD2BE72007E8217 /* WDN Cash Watch AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -122,25 +48,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7F6053E22DD2BE70007E8217 /* WDN Cash */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7F6054102DD2BE72007E8217 /* Build configuration list for PBXNativeTarget "WDN Cash" */;
-			buildPhases = (
-				7F6053E12DD2BE70007E8217 /* Resources */,
-				7F60540F2DD2BE72007E8217 /* Embed Watch Content */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7F6053EC2DD2BE70007E8217 /* PBXTargetDependency */,
-			);
-			name = "WDN Cash";
-			packageProductDependencies = (
-			);
-			productName = "WDN Cash";
-			productReference = 7F6053E32DD2BE70007E8217 /* WDN Cash.app */;
-			productType = "com.apple.product-type.application.watchapp2-container";
-		};
 		7F6053E82DD2BE70007E8217 /* WDN Cash Watch App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7F60540C2DD2BE72007E8217 /* Build configuration list for PBXNativeTarget "WDN Cash Watch App" */;
@@ -163,52 +70,6 @@
 			productReference = 7F6053E92DD2BE70007E8217 /* WDN Cash Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7F6053F72DD2BE72007E8217 /* WDN Cash Watch AppTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7F6054132DD2BE72007E8217 /* Build configuration list for PBXNativeTarget "WDN Cash Watch AppTests" */;
-			buildPhases = (
-				7F6053F42DD2BE72007E8217 /* Sources */,
-				7F6053F52DD2BE72007E8217 /* Frameworks */,
-				7F6053F62DD2BE72007E8217 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7F6053FA2DD2BE72007E8217 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				7F6053FB2DD2BE72007E8217 /* WDN Cash Watch AppTests */,
-			);
-			name = "WDN Cash Watch AppTests";
-			packageProductDependencies = (
-			);
-			productName = "WDN Cash Watch AppTests";
-			productReference = 7F6053F82DD2BE72007E8217 /* WDN Cash Watch AppTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		7F6054012DD2BE72007E8217 /* WDN Cash Watch AppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7F6054162DD2BE72007E8217 /* Build configuration list for PBXNativeTarget "WDN Cash Watch AppUITests" */;
-			buildPhases = (
-				7F6053FE2DD2BE72007E8217 /* Sources */,
-				7F6053FF2DD2BE72007E8217 /* Frameworks */,
-				7F6054002DD2BE72007E8217 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7F6054042DD2BE72007E8217 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				7F6054052DD2BE72007E8217 /* WDN Cash Watch AppUITests */,
-			);
-			name = "WDN Cash Watch AppUITests";
-			packageProductDependencies = (
-			);
-			productName = "WDN Cash Watch AppUITests";
-			productReference = 7F6054022DD2BE72007E8217 /* WDN Cash Watch AppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -219,19 +80,8 @@
 				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
-					7F6053E22DD2BE70007E8217 = {
-						CreatedOnToolsVersion = 16.3;
-					};
 					7F6053E82DD2BE70007E8217 = {
 						CreatedOnToolsVersion = 16.3;
-					};
-					7F6053F72DD2BE72007E8217 = {
-						CreatedOnToolsVersion = 16.3;
-						TestTargetID = 7F6053E82DD2BE70007E8217;
-					};
-					7F6054012DD2BE72007E8217 = {
-						CreatedOnToolsVersion = 16.3;
-						TestTargetID = 7F6053E82DD2BE70007E8217;
 					};
 				};
 			};
@@ -249,37 +99,13 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7F6053E22DD2BE70007E8217 /* WDN Cash */,
 				7F6053E82DD2BE70007E8217 /* WDN Cash Watch App */,
-				7F6053F72DD2BE72007E8217 /* WDN Cash Watch AppTests */,
-				7F6054012DD2BE72007E8217 /* WDN Cash Watch AppUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		7F6053E12DD2BE70007E8217 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7F6053E72DD2BE70007E8217 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7F6053F62DD2BE72007E8217 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7F6054002DD2BE72007E8217 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -296,39 +122,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7F6053F42DD2BE72007E8217 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7F6053FE2DD2BE72007E8217 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		7F6053EC2DD2BE70007E8217 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7F6053E82DD2BE70007E8217 /* WDN Cash Watch App */;
-			targetProxy = 7F6053EB2DD2BE70007E8217 /* PBXContainerItemProxy */;
-		};
-		7F6053FA2DD2BE72007E8217 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7F6053E82DD2BE70007E8217 /* WDN Cash Watch App */;
-			targetProxy = 7F6053F92DD2BE72007E8217 /* PBXContainerItemProxy */;
-		};
-		7F6054042DD2BE72007E8217 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7F6053E82DD2BE70007E8217 /* WDN Cash Watch App */;
-			targetProxy = 7F6054032DD2BE72007E8217 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		7F60540A2DD2BE72007E8217 /* Debug */ = {
@@ -506,117 +300,6 @@
 			};
 			name = Release;
 		};
-		7F6054112DD2BE72007E8217 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 99L25FT5GG;
-				INFOPLIST_KEY_CFBundleDisplayName = "WDN Cash";
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "WDN-Cash.WDN-Cash";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		7F6054122DD2BE72007E8217 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 99L25FT5GG;
-				INFOPLIST_KEY_CFBundleDisplayName = "WDN Cash";
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "WDN-Cash.WDN-Cash";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		7F6054142DD2BE72007E8217 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 99L25FT5GG;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "WDN-Cash.WDN-Cash-Watch-AppTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WDN Cash Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WDN Cash Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 11.4;
-			};
-			name = Debug;
-		};
-		7F6054152DD2BE72007E8217 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 99L25FT5GG;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "WDN-Cash.WDN-Cash-Watch-AppTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WDN Cash Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WDN Cash Watch App";
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 11.4;
-			};
-			name = Release;
-		};
-		7F6054172DD2BE72007E8217 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 99L25FT5GG;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "WDN-Cash.WDN-Cash-Watch-AppUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_TARGET_NAME = "WDN Cash Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 11.4;
-			};
-			name = Debug;
-		};
-		7F6054182DD2BE72007E8217 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 99L25FT5GG;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "WDN-Cash.WDN-Cash-Watch-AppUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				TEST_TARGET_NAME = "WDN Cash Watch App";
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 11.4;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -634,33 +317,6 @@
 			buildConfigurations = (
 				7F60540D2DD2BE72007E8217 /* Debug */,
 				7F60540E2DD2BE72007E8217 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7F6054102DD2BE72007E8217 /* Build configuration list for PBXNativeTarget "WDN Cash" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7F6054112DD2BE72007E8217 /* Debug */,
-				7F6054122DD2BE72007E8217 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7F6054132DD2BE72007E8217 /* Build configuration list for PBXNativeTarget "WDN Cash Watch AppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7F6054142DD2BE72007E8217 /* Debug */,
-				7F6054152DD2BE72007E8217 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7F6054162DD2BE72007E8217 /* Build configuration list for PBXNativeTarget "WDN Cash Watch AppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7F6054172DD2BE72007E8217 /* Debug */,
-				7F6054182DD2BE72007E8217 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
