@@ -1,54 +1,58 @@
 import SwiftUI
+import Foundation
 
 struct HistoryDollar: View {
-    @State private var lastQuote: Double?
-    @State private var weekDay: String = ""
-    
+    @State private var quotes: [String: Double] = [:]
+    @Environment(\.dismiss) private var dismiss
     private let storage = HistoryDollarModel()
     
     var body: some View {
         VStack(spacing: 10) {
+          Spacer()
             Text("Cotação da Semana")
-                .font(.headline)
-                .foregroundStyle(.white)
+                .font(.system(size: 17, weight: .medium))
+                .foregroundStyle(.yellow)
                 .multilineTextAlignment(.center)
-                .padding(.bottom, 2)
+                .padding(.bottom, -5)
             
-            if let quote = lastQuote {
-                Text(String(format: "R$ %.2f", quote))
-                    .font(.system(size: 34, weight: .bold))
-                    .foregroundStyle(.green)
-                    .minimumScaleFactor(0.5)
-                
-                Text("Atualizado na \(weekDay)")
-                    .font(.footnote)
-                    .foregroundColor(.gray)
-            } else {
-                VStack(spacing: 4) {
-                    Text("Sem dados disponíveis")
-                        .font(.callout)
-                        .foregroundColor(.red)
-                    
-                    Text("Toque em \"Atualizar\" no app principal.")
-                        .font(.caption2)
-                        .foregroundColor(.gray)
-                        .multilineTextAlignment(.center)
+            ForEach(storage.orderedWeekDays, id: \.self) { day in
+                HStack {
+                    Text(day)
+                        .font(.subheadline)
+                        .foregroundColor(.white)
+                    Spacer()
+                    if let value = quotes[day] {
+                        Text(String(format: "R$ %.2f", value))
+                            .foregroundColor(value < 0 ? .red : .green)
+                    } else {
+                        Text("_")
+                            .foregroundColor(.gray)
+                    }
                 }
+                .padding(.horizontal)
             }
+            
+            Divider()
+                .background(Color.black)
+            Button("Voltar") {
+                dismiss()
+            }
+            .font(.system(size: 14))
+            .foregroundColor(.yellow)
+            .buttonStyle(.plain)
+            
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.black)
         .onAppear {
-            loadQuote()
+            loadQuotes()
         }
+        .navigationBarBackButtonHidden(true)
     }
     
-    private func loadQuote() {
-        if let savedQuote = storage.loadWeeklyQuote() {
-            lastQuote = savedQuote.value
-            weekDay = savedQuote.weekDay
-        }
+    private func loadQuotes() {
+        quotes = storage.loadAllQuotes()
     }
 }
 

@@ -7,7 +7,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var currencyCode: String? = "BRL"
     @Published var locationError: String?
     @Published var countryName: String? = nil
-    @Published var countryColors: [Color] = [.blue] // Cor padrão: Brasil
+    @Published var countryColors: [Color] = [.blue] 
 
     private let countryToCurrency: [String: String] = [
         "BR": "BRL",

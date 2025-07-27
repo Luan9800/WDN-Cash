@@ -12,11 +12,11 @@ class ChartViewModel: ObservableObject {
 
         URLSession.shared.dataTask(with: url) { data, _, error in
             if let error = error {
-                print("Erro na requisição: \(error)")
+                print("Erro na Requisição: \(error)")
                 return
             }
             guard let data = data else {
-                print("Dados inválidos")
+                print("Dados Inválidos")
                 return
             }
 

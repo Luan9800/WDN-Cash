@@ -20,7 +20,7 @@ struct CashLoginView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 75, height: 75)
-                        .foregroundColor(animateColor ? locationManager.countryColors.first ?? .green : locationManager.countryColors.last ?? .blue)
+                        .foregroundColor(animateColor ? locationManager.countryColors.first ?? .green : locationManager.countryColors.last ?? .green)
                         .rotationEffect(.degrees(rotateIcon ? 360 : 0))
                         .animation(.easeInOut(duration: 2).repeatForever(autoreverses: false), value: rotateIcon)
                     
@@ -43,7 +43,7 @@ struct CashLoginView: View {
 
                         Text("WDN Cash")
                             .font(.title2.bold())
-                            .foregroundColor(locationManager.countryColors.first ?? .blue)
+                            .foregroundColor(locationManager.countryColors.first ?? .green)
                     }
 
                     ProgressView()

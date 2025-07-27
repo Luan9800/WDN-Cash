@@ -3,33 +3,33 @@ import SwiftUI
 struct HomeCashView: View {
     var body: some View {
         NavigationStack {
-            VStack(spacing: 4) {
+            VStack(spacing: 3) {
                 Text("Home")
-                    .font(.system(size: 17, weight: .bold))
+                    .font(.system(size: 16, weight: .bold))
                     .multilineTextAlignment(.center)
                     .padding(.top, 12)
                 
                 NavigationLink(destination: CashView()) {
                     Label("Cotação do Dia", systemImage: "banknote")
                         .modifier(MenuButtonStyle(background: .green, foreground: .black))
-                        .cornerRadius(12)
+                        .cornerRadius(10)
                 }
                 
                 NavigationLink(destination: CurrencyConverterWatchView()) {
                     Label("Conversor de Moedas", systemImage: "arrow.left.arrow.right")
                         .modifier(MenuButtonStyle(background: .blue, foreground: .black))
-                        .cornerRadius(12)
+                        .cornerRadius(10)
                 }
                 
                 NavigationLink(destination: HistoryDollar()) {
                     Label("Histórico Semanal", systemImage: "calendar")
                         .modifier(MenuButtonStyle(background: .orange, foreground: .black))
-                        .cornerRadius(12)
+                        .cornerRadius(10)
                 }
                 NavigationLink (destination: NotificationView()) {
                     Label("Notificação Dólar", systemImage: "exclamationmark.bubble")
                         .modifier(MenuButtonStyle(background: .yellow, foreground: .black))
-                        .cornerRadius(12)
+                        .cornerRadius(10)
                 }
             }
             .padding(.horizontal, 10)

@@ -25,7 +25,7 @@ class CurrencyViewModel: ObservableObject {
                 }
 
                 guard let data = data else {
-                    self.errorMessage = "Dados inválidos"
+                    self.errorMessage = "Dados Inválidos!"
                     return
                 }
 

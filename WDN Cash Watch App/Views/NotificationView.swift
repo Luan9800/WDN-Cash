@@ -3,72 +3,120 @@ import UserNotifications
 
 struct NotificationView: View {
     @State private var permissionStatus: UNAuthorizationStatus = .notDetermined
-
+    @StateObject private var manager = NotificationManager.shared
+    
     var body: some View {
-        VStack(spacing: 20) {
-            Text("Notificações do Dólar")
-                .font(.headline)
-                .foregroundColor(.white)
-
-            Text("Receba alertas quando o dólar subir ou cair mais que R$ 0,20.")
-                .font(.caption)
-                .foregroundColor(.gray)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
-
-            switch permissionStatus {
-            case .authorized:
-                Image(systemName: "bell.badge.fill")
-                    .font(.system(size: 32))
-                    .foregroundColor(.green)
-                Text("Notificações ativadas")
-                    .foregroundColor(.green)
-
-            case .denied:
-                Image(systemName: "bell.slash.fill")
-                    .font(.system(size: 32))
-                    .foregroundColor(.red)
-                Text("Notificações desativadas")
-                    .foregroundColor(.red)
-                Text("Abra o app Watch no iPhone e ative as notificações para este app.")
+        ScrollView {
+            VStack(spacing: 16) {
+                Text("Notificações do Dólar")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .fontWeight(.bold)
+                
+                Text("Receba Alertas Quando o dólar subir ou cair mais que R$ 0,20.")
                     .font(.caption2)
-                    .multilineTextAlignment(.center)
                     .foregroundColor(.gray)
-
-            case .notDetermined:
-                Button("Ativar Notificações") {
-                    requestPermission()
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
+                
+                switch manager.permissionStatus {
+                case .authorized:
+                    VStack(spacing: 12) {
+                        Image(systemName: "bell.badge.fill")
+                            .font(.system(size: 20))
+                            .foregroundColor(.green)
+                        
+                        Text("Notificações Ativadas")
+                            .font(.system(size: 13, weight: .semibold))
+                            .foregroundColor(.green)
+                        
+                        // Botão para agendar notificação de teste
+                        Button(action: {
+                            manager.scheduleTestNotification()
+                        }) {
+                            Text("Ativar Notificações")
+                                .font(.system(size: 15))
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 5)
+                                .background(Color.green.opacity(0.2))
+                                .foregroundColor(.white)
+                                .cornerRadius(15)
+                        }
+                        .buttonStyle(.plain)
+                        .padding(.horizontal, 8)
+                        
+                        // Botão para desativar
+                        Button(action: {
+                            manager.disableNotifications()
+                        }) {
+                            Text("Desativar Notificações")
+                                .font(.system(size: 15))
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 5)
+                                .background(Color.red.opacity(0.2))
+                                .foregroundColor(.red)
+                                .cornerRadius(15)
+                        }
+                        .buttonStyle(.plain)
+                        .padding(.horizontal, 8)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
+                    
+                case .provisional:
+                    VStack(spacing: 6) {
+                        HStack {
+                          Text("Notificações Provisórias")
+                                .font(.system(size: 13))
+                                .foregroundColor(.yellow)
+                            
+                          Image(systemName: "bell.badge")
+                                .font(.system(size: 20))
+                                .foregroundColor(.yellow)
+                        }
+                        Text("O Sistema pode Enviar Alertas Silenciosos.")
+                            .font(.caption2)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.gray)
+                    }
+                    
+                case .denied:
+                    VStack(spacing: 6) {
+                        Image(systemName: "bell.slash.fill")
+                            .font(.system(size: 20))
+                            .foregroundColor(.red)
+                        
+                        Text("Notificações Desativadas")
+                            .font(.system(size: 15))
+                            .foregroundColor(.red)
+                        
+                        Text("Abra o app Watch no iPhone e ative as notificações para este app.")
+                            .font(.caption2)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.gray)
+                    }
+                    
+                case .notDetermined:
+                    Button("Ativar Notificações") {
+                        manager.requestPermission()
+                    }
+                    .padding(.vertical, 6)
+                    .padding(.horizontal)
+                    .background(Color.green)
+                    .foregroundColor(.black)
+                    .cornerRadius(10)
+                    .buttonStyle(.plain)
+                    
+                @unknown default:
+                    Text("Status Desconhecido.")
+                        .foregroundColor(.orange)
                 }
-                .padding()
-                .background(Color.blue)
-                .foregroundColor(.black)
-                .cornerRadius(10)
-
-            default:
-                EmptyView()
             }
+            .padding()
         }
-        .padding()
         .background(Color.black)
-        .buttonStyle(.plain)
         .onAppear {
-            checkNotificationStatus()
-        }
-    }
-
-    private func requestPermission() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, _ in
-            DispatchQueue.main.async {
-                checkNotificationStatus()
-            }
-        }
-    }
-
-    private func checkNotificationStatus() {
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
-            DispatchQueue.main.async {
-                self.permissionStatus = settings.authorizationStatus
-            }
+            manager.checkNotificationStatus()
         }
     }
 }
