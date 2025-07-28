@@ -8,10 +8,10 @@ struct HistoryDollar: View {
     
     var body: some View {
         VStack(spacing: 10) {
-          Spacer()
+            Spacer()
             Text("Cotação da Semana")
                 .font(.system(size: 17, weight: .medium))
-                .foregroundStyle(.yellow)
+                .foregroundStyle(.orange)
                 .multilineTextAlignment(.center)
                 .padding(.bottom, -5)
             
@@ -31,15 +31,14 @@ struct HistoryDollar: View {
                 }
                 .padding(.horizontal)
             }
-            
             Divider()
                 .background(Color.black)
             Button("Voltar") {
                 dismiss()
             }
-            .font(.system(size: 14))
-            .foregroundColor(.yellow)
             .buttonStyle(.plain)
+            .font(.system(size: 14))
+            .foregroundColor(.orange)
             
         }
         .padding()

@@ -10,10 +10,10 @@ struct NotificationView: View {
             VStack(spacing: 16) {
                 Text("Notificações do Dólar")
                     .font(.headline)
-                    .foregroundColor(.white)
                     .fontWeight(.bold)
+                    .foregroundColor(.yellow)
                 
-                Text("Receba Alertas Quando o dólar subir ou cair mais que R$ 0,20.")
+                Text("Receba Alertas Quando o Dólar Subir ou Cair mais que R$ 0,20.")
                     .font(.caption2)
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
@@ -30,7 +30,6 @@ struct NotificationView: View {
                             .font(.system(size: 13, weight: .semibold))
                             .foregroundColor(.green)
                         
-                        // Botão para agendar notificação de teste
                         Button(action: {
                             manager.scheduleTestNotification()
                         }) {
@@ -39,8 +38,8 @@ struct NotificationView: View {
                                 .frame(maxWidth: .infinity)
                                 .padding(.vertical, 5)
                                 .background(Color.green.opacity(0.2))
-                                .foregroundColor(.white)
-                                .cornerRadius(15)
+                                .foregroundColor(.green)
+                                .cornerRadius(10)
                         }
                         .buttonStyle(.plain)
                         .padding(.horizontal, 8)
@@ -55,7 +54,7 @@ struct NotificationView: View {
                                 .padding(.vertical, 5)
                                 .background(Color.red.opacity(0.2))
                                 .foregroundColor(.red)
-                                .cornerRadius(15)
+                                .cornerRadius(10)
                         }
                         .buttonStyle(.plain)
                         .padding(.horizontal, 8)
@@ -66,11 +65,11 @@ struct NotificationView: View {
                 case .provisional:
                     VStack(spacing: 6) {
                         HStack {
-                          Text("Notificações Provisórias")
+                            Text("Notificações Provisórias")
                                 .font(.system(size: 13))
                                 .foregroundColor(.yellow)
                             
-                          Image(systemName: "bell.badge")
+                            Image(systemName: "bell.badge")
                                 .font(.system(size: 20))
                                 .foregroundColor(.yellow)
                         }
@@ -86,9 +85,13 @@ struct NotificationView: View {
                             .font(.system(size: 20))
                             .foregroundColor(.red)
                         
-                        Text("Notificações Desativadas")
-                            .font(.system(size: 15))
-                            .foregroundColor(.red)
+                        Text("Desativadas")
+                            .padding(.vertical, 6)
+                            .padding(.horizontal)
+                            .background(Color.red)
+                            .foregroundColor(.white)
+                            .cornerRadius(12)
+                            .buttonStyle(.plain)
                         
                         Text("Abra o app Watch no iPhone e ative as notificações para este app.")
                             .font(.caption2)
@@ -104,7 +107,7 @@ struct NotificationView: View {
                     .padding(.horizontal)
                     .background(Color.green)
                     .foregroundColor(.black)
-                    .cornerRadius(10)
+                    .cornerRadius(12)
                     .buttonStyle(.plain)
                     
                 @unknown default:

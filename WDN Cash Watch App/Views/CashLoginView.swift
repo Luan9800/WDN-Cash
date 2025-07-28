@@ -10,12 +10,13 @@ struct CashLoginView: View {
     
     var body: some View {
         NavigationStack {
+            Spacer()
             if isActive {
                 HomeCashView()
                     .transition(.opacity)
             } else {
                 VStack(spacing: 10) {
-                    // Ícone animado com cor dinâmica baseada no país
+                  Spacer()
                     Image(systemName: "dollarsign.square.fill")
                         .resizable()
                         .scaledToFit()
@@ -34,10 +35,9 @@ struct CashLoginView: View {
                             .multilineTextAlignment(.center)
                             .padding(.top, 4)
                     }
-
-                    // Textos com animação de cor baseada no tema do país
                     VStack(spacing: 4) {
-                        Text("Bem-vindo ao")
+                     Spacer()
+                        Text("Bem Vindo ao")
                             .font(.footnote)
                             .foregroundColor(locationManager.countryColors.count > 1 ? locationManager.countryColors[1] : .gray)
 
