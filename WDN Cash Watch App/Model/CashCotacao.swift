@@ -5,3 +5,15 @@ struct Quote: Identifiable, Equatable {
     let timestamp: Date
     let value: Double
 }
+
+struct PTAXResponse: Codable {
+    let value: [PTAXQuote]
+}
+
+struct PTAXQuote: Codable {
+    let cotacaoCompra: Double
+    let cotacaoVenda: Double
+    let dataHoraCotacao: String
+}
+
+

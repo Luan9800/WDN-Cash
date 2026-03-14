@@ -5,7 +5,7 @@ struct HomeCashView: View {
         NavigationStack {
             VStack(spacing: 3) {
                 Text("Home")
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.system(size: 17, weight: .bold))
                     .multilineTextAlignment(.center)
                     .padding(.top, 12)
                 

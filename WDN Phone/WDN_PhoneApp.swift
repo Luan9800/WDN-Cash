@@ -6,14 +6,14 @@
 //
 
 import SwiftUI
+import Combine
 import UserNotifications
 
 @main
 struct WDN_PhoneApp: App {
-
-    @UIApplicationDelegateAdaptor(NotificationDelegate.self)
-    var appDelegate
-
+    
+    @UIApplicationDelegateAdaptor(NotificationDelegate.self) var appDelegate
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

@@ -2,11 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>CFBundleIdentifier</key>
+    <string>com.yourcompany.WDN-Cash-Watch</string> <!-- Substitua por um ID único, ex.: com.seuemail.WDN-Cash-Watch -->
     <key>CFBundleDisplayName</key>
-    <string>WDN Cash Watch</string>
+    <string>WDN Cash</string>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string>Usamos sua localização para detectar sua moeda local automaticamente.</string>
     <key>UNNotificationAlertUsageDescription</key>
     <string>Enviamos alertas quando o dólar sofre grandes variações.</string>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+    </array>
 </dict>
 </plist>

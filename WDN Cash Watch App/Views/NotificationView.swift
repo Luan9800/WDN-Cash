@@ -4,6 +4,8 @@ import UserNotifications
 struct NotificationView: View {
     @State private var permissionStatus: UNAuthorizationStatus = .notDetermined
     @StateObject private var manager = NotificationManager.shared
+    @State private var showSuccessAlert = false
+    @State private var showDisabledAlert = false
     
     var body: some View {
         ScrollView {
@@ -11,7 +13,7 @@ struct NotificationView: View {
                 Text("Notificações do Dólar")
                     .font(.headline)
                     .fontWeight(.bold)
-                    .foregroundColor(.yellow)
+                    .foregroundColor(.blue)
                 
                 Text("Receba Alertas Quando o Dólar Subir ou Cair mais que R$ 0,20.")
                     .font(.caption2)
@@ -32,6 +34,7 @@ struct NotificationView: View {
                         
                         Button(action: {
                             manager.scheduleTestNotification()
+                            showSuccessAlert = true
                         }) {
                             Text("Ativar Notificações")
                                 .font(.system(size: 15))
@@ -47,6 +50,10 @@ struct NotificationView: View {
                         // Botão para desativar
                         Button(action: {
                             manager.disableNotifications()
+                            permissionStatus = .notDetermined
+                            manager.permissionStatus = .notDetermined
+                            showDisabledAlert = true
+                            
                         }) {
                             Text("Desativar Notificações")
                                 .font(.system(size: 15))
@@ -102,6 +109,7 @@ struct NotificationView: View {
                 case .notDetermined:
                     Button("Ativar Notificações") {
                         manager.requestPermission()
+                        showSuccessAlert = true
                     }
                     .padding(.vertical, 6)
                     .padding(.horizontal)
@@ -121,9 +129,27 @@ struct NotificationView: View {
         .onAppear {
             manager.checkNotificationStatus()
         }
+        .alert(isPresented: $showSuccessAlert) {
+            Alert(
+                title: Text("✅ Notificações ativadas!")
+                    .font(.system(size: 12)),
+                message: Text("Agora você receberá alertas sobre a variação do dólar.")
+                    .font(.system(size: 12)),
+                dismissButton: .default(Text("OK"))
+            )
+        }
+        .alert(isPresented:$showDisabledAlert){
+            Alert(
+                title: Text("🔕 Notificações desativadas")
+                    .font(.system(size: 12)),
+                message: Text("Você não receberá mais alertas até ativa-lá novamente. ")
+                    .font(.system(size: 12)),
+                dismissButton: .default(Text("OK"))
+              
+            )
+        }
     }
 }
-
 struct NotificationView_Previews: PreviewProvider {
     static var previews: some View {
         NotificationView()

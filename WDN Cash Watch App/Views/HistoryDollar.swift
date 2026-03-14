@@ -10,8 +10,8 @@ struct HistoryDollar: View {
         VStack(spacing: 10) {
             Spacer()
             Text("Cotação da Semana")
-                .font(.system(size: 17, weight: .medium))
-                .foregroundStyle(.orange)
+                .font(.system(size: 16.5, weight: .medium))
+                .foregroundStyle(.blue)
                 .multilineTextAlignment(.center)
                 .padding(.bottom, -5)
             
@@ -38,7 +38,7 @@ struct HistoryDollar: View {
             }
             .buttonStyle(.plain)
             .font(.system(size: 14))
-            .foregroundColor(.orange)
+            .foregroundColor(.blue)
             
         }
         .padding()

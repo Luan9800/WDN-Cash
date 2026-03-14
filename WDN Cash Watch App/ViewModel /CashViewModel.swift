@@ -5,6 +5,7 @@ class CashViewModel: ObservableObject {
     @Published var dollarRate: String = "--"
     @Published var variation: String?
     @Published var percentageVariation: String?
+    @Published var selectedDollarType: DollarType = .comercial
     @Published var isFalling: Bool = false
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
@@ -18,63 +19,83 @@ class CashViewModel: ObservableObject {
     func fetchDollarRate(completion: (() -> Void)? = nil) {
         isLoading = true
         errorMessage = nil
-        
-        guard let url = URL(string: "https://economia.awesomeapi.com.br/json/last/USD-BRL") else {
+
+        guard let url = URL(string: selectedDollarType.endpoint) else {
             self.errorMessage = "URL inválida"
             self.isLoading = false
             completion?()
             return
         }
-        
+
         URLSession.shared.dataTask(with: url) { data, response, error in
             DispatchQueue.main.async {
                 self.isLoading = false
-                
+
                 if let error = error {
                     self.errorMessage = "Erro: \(error.localizedDescription)"
                     completion?()
                     return
                 }
-                
+
                 guard let data = data else {
                     self.errorMessage = "Dados não encontrados"
                     completion?()
                     return
                 }
-                
+
                 do {
-                    let result = try JSONDecoder().decode([String: DollarResponse].self, from: data)
-                    if let usd = result["USDBRL"], let newBid = Double(usd.bid) {
-                        let formattedRate = "R$ \(String(format: "%.2f", newBid))"
-                        
-                        // Sempre atualiza a taxa formatada
-                        self.dollarRate = formattedRate
-                        
-                        // Só atualiza variações e histórico se o valor mudou
-                        let lastQuote = self.quotes.last?.value
-                        if lastQuote == nil || abs(newBid - lastQuote!) > 0.001 {
-                            self.updateVariation(from: newBid)
-                            
-                            let newQuote = Quote(timestamp: Date(), value: newBid)
-                            self.quotes.append(newQuote)
-                            if self.quotes.count > 10 {
-                                self.quotes.removeFirst()
-                            }
-                            
-                            self.saveWeeklyQuote(value: newBid)
+                    if self.selectedDollarType == .comercial {
+                        // JSON AwesomeAPI
+                        let result = try JSONDecoder().decode([String: DollarResponse].self, from: data)
+
+                        guard let usd = result["USDBRL"],
+                              let newBid = Double(usd.bid) else {
+                            self.errorMessage = "Resposta inválida"
+                            completion?()
+                            return
                         }
+
+                        self.updateDollarRate(newBid)
+
                     } else {
-                        self.errorMessage = "Resposta inválida"
+                        // JSON PTAX (Banco Central)
+                        let ptaxResult = try JSONDecoder().decode(PTAXResponse.self, from: data)
+
+                        guard !ptaxResult.value.isEmpty else {
+                            self.errorMessage = "Banco Central ainda não liberou a PTAX de hoje"
+                            completion?()
+                            return
+                        }
+
+                        let turismoValue = ptaxResult.value[0].cotacaoVenda
+                        self.updateDollarRate(turismoValue)
                     }
+
                 } catch {
                     self.errorMessage = "Erro ao decodificar: \(error.localizedDescription)"
                 }
-                
+
                 completion?()
             }
         }.resume()
     }
-    
+
+    private func updateDollarRate(_ newBid: Double) {
+        let formattedRate = "R$ \(String(format: "%.2f", newBid))"
+        self.dollarRate = formattedRate
+        
+        let lastQuote = self.quotes.last?.value
+        if lastQuote == nil || abs(newBid - lastQuote!) > 0.001 {
+            self.updateVariation(from: newBid)
+            
+            let newQuote = Quote(timestamp: Date(), value: newBid)
+            self.quotes.append(newQuote)
+            if self.quotes.count > 10 {
+                self.quotes.removeFirst()
+            }
+            self.saveWeeklyQuote(value: newBid)
+        }
+    }
     
     private func updateVariation(from newBid: Double) {
         guard let previous = quotes.dropLast().last?.value else {
@@ -145,3 +166,23 @@ class CashViewModel: ObservableObject {
     }
 }
 
+enum DollarType: String, CaseIterable, Identifiable {
+    case comercial = "Comercial"
+    case turismo = "Turismo"
+    
+    var id: String { rawValue }
+    
+    var endpoint: String {
+        switch self {
+        case .comercial:
+            return "https://economia.awesomeapi.com.br/json/last/USD-BRL"
+        case .turismo:
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM-dd-yyyy"
+            let today = formatter.string(from: Date())
+
+            return "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao='\(today)'&$format=json"
+
+        }
+    }
+}

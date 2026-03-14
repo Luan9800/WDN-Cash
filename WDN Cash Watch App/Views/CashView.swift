@@ -5,14 +5,17 @@ struct CashView: View {
     @State private var showTrend = false
     @State private var previousRate: String?
     @State private var resetWorkItem: DispatchWorkItem?
+    @State private var showDollarTypeAlert = false
+    
     @StateObject private var viewModel = CashViewModel()
     @StateObject private var chartViewModel = ChartViewModel()
     
     @Environment(\.dismiss) private var dismiss
-
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 10) {
+                // Título
                 Button(action: {
                     dismiss()
                 }) {
@@ -23,7 +26,37 @@ struct CashView: View {
                         .accessibilityLabel(showTrend && viewModel.variation != nil ? (viewModel.isFalling ? "Dólar em queda" : "Dólar em alta") : "Cotação do dólar")
                 }
                 .buttonStyle(.plain)
-
+                
+                // Botão para selecionar tipo de dólar
+                Button(action: {
+                    showDollarTypeAlert = true
+                }) {
+                    HStack(spacing: 4) {
+                        Text(viewModel.selectedDollarType.rawValue)
+                            .font(.system(size: 14, weight: .medium))
+                        Image(systemName: "chevron.down")
+                            .font(.system(size: 15))
+                    }
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Color.green.opacity(0.2))
+                    .foregroundColor(.green)
+                    .cornerRadius(20)
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .alert("Escolher Tipo de Dólar", isPresented: $showDollarTypeAlert) {
+                    ForEach(DollarType.allCases) { tipo in
+                        Button(tipo.rawValue) {
+                            viewModel.selectedDollarType = tipo
+                            viewModel.fetchDollarRate()
+                        }
+                    }
+                    Button("Cancelar", role: .cancel) { }
+                }
+                
+                
+                // Status da cotação
                 if viewModel.isLoading {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle(tint: .green))
@@ -38,42 +71,41 @@ struct CashView: View {
                             .font(.system(size: 28, weight: .bold, design: .rounded))
                             .foregroundColor(viewModel.isFalling ? .red : .green)
                             .transition(.opacity)
-
-                        if let variation = viewModel.variation {
-                            HStack(spacing: 4) {
-                                Image(systemName: viewModel.isFalling ? "arrow.down" : "arrow.up")
-                                Text("R$ \(variation)")
-                                if let percentage = viewModel.percentageVariation {
-                                    Text("(\(percentage))")
+                        
+                        if viewModel.variation != nil {
+                            if let variation = viewModel.variation{
+                                HStack(spacing: 4) {
+                                    Image(systemName: viewModel.isFalling ? "arrow.down" : "arrow.up")
+                                    Text("R$ \(variation)")
                                 }
+                                .font(.footnote)
+                                .foregroundColor(viewModel.isFalling ? .red : .green)
+                                .transition(.opacity)
                             }
-                            .font(.footnote)
-                            .foregroundColor(viewModel.isFalling ? .red : .green)
-                            .transition(.opacity)
                         }
                     }
                     .padding(.top, 2)
                     .animation(.easeInOut(duration: 0.3), value: viewModel.dollarRate)
                 }
-
+                
                 // Botão Atualizar
                 Button(action: {
                     resetWorkItem?.cancel()
                     let oldRate = viewModel.dollarRate
-
+                    
                     viewModel.fetchDollarRate {
                         let newRate = viewModel.dollarRate
-
+                        
                         showTrend = true
-
+                        
                         if newRate != oldRate {
                             previousRate = newRate
                         }
-
+                        
                         let workItem = DispatchWorkItem {
                             showTrend = false
                         }
-
+                        
                         resetWorkItem = workItem
                         DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: workItem)
                     }
@@ -91,8 +123,7 @@ struct CashView: View {
                 }
                 .buttonStyle(.plain)
                 .accessibilityHint("Atualiza a cotação do dólar")
-
-
+                
                 // Botão Ver Gráfico
                 NavigationLink(destination: GraficView(cashViewModel: viewModel, chartViewModel: chartViewModel)) {
                     HStack(spacing: 6) {

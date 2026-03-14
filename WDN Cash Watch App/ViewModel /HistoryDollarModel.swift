@@ -1,5 +1,13 @@
 import Foundation
 
+enum WeekDay: String, CaseIterable {
+    case segunda = "Segunda-feira"
+    case terca   = "Terça-feira"
+    case quarta  = "Quarta-feira"
+    case quinta  = "Quinta-feira"
+    case sexta   = "Sexta-feira"
+}
+
 struct HistoryDollarModel {
     private let quotesKey = "weeklyDollarQuotes"
     private let weekKey = "currentWeekNumber"
@@ -17,7 +25,20 @@ struct HistoryDollarModel {
     /// Retorna todas as cotações da semana atual.
     func loadAllQuotes() -> [String: Double] {
         clearIfNewWeek(currentDate: Date())
-        return UserDefaults.standard.dictionary(forKey: quotesKey) as? [String: Double] ?? [:]
+
+        guard let raw = UserDefaults.standard.dictionary(forKey: quotesKey) else {
+            return [:]
+        }
+
+        var result: [String: Double] = [:]
+
+        for (key, value) in raw {
+            if let number = value as? NSNumber {
+                result[key] = number.doubleValue
+            }
+        }
+
+        return result
     }
     
     /// Apaga todas as cotações salvas.
@@ -35,7 +56,17 @@ struct HistoryDollarModel {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "pt_BR")
         formatter.dateFormat = "EEEE"
-        return formatter.string(from: date).capitalized
+        let day = formatter.string(from: date).capitalized
+        
+        // Mapeia para garantir consistência
+        switch day {
+        case "Segunda-Feira": return "Segunda-feira"
+        case "Terça-Feira": return "Terça-feira"
+        case "Quarta-Feira": return "Quarta-feira"
+        case "Quinta-Feira": return "Quinta-feira"
+        case "Sexta-Feira": return "Sexta-feira"
+        default: return day
+        }
     }
     
     private func getCurrentWeekNumber(for date: Date) -> Int {
@@ -45,15 +76,17 @@ struct HistoryDollarModel {
     
     private func clearIfNewWeek(currentDate: Date) {
         let currentWeek = getCurrentWeekNumber(for: currentDate)
-        
-        if let savedWeek = UserDefaults.standard.object(forKey: weekKey) as? Int {
-            if savedWeek != currentWeek {
-                clearAllQuotes()
-                UserDefaults.standard.set(currentWeek, forKey: weekKey)
-            }
-        } else {
-            // Primeira vez salvando
+        let savedWeek = UserDefaults.standard.integer(forKey: weekKey)
+
+        if savedWeek == 0 {
+            UserDefaults.standard.set(currentWeek, forKey: weekKey)
+            return
+        }
+
+        if savedWeek != currentWeek {
+            clearAllQuotes()
             UserDefaults.standard.set(currentWeek, forKey: weekKey)
         }
     }
+
 }
